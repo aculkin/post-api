@@ -44,3 +44,14 @@ class ModelTests(TestCase):
 
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
+
+    def test_post_str(self):
+        """Test the string representation of a post"""
+        post = models.Post.objects.create(
+            author=sample_user(),
+            title='Test title',
+            content='Test content'
+        )
+
+        self.assertEqual(str(post), post.title)
+        
