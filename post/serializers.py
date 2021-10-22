@@ -6,10 +6,7 @@ from core.models import Post
 
 class PostSerializer(serializers.ModelSerializer):
     """Serializer for post objects"""
-    author = serializers.SlugRelatedField(
-        read_only=True,
-        slug_field='name'
-    )
+    author = UserSerializer(read_only=True)
 
     class Meta:
         model = Post
@@ -17,6 +14,6 @@ class PostSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'date_posted', 'date_updated')
 
 
-class PostDetailSerializer(PostSerializer):
-    """Serializer for a post details"""
-    author = UserSerializer(read_only=True)
+# class PostDetailSerializer(PostSerializer):
+#     """Serializer for a post details"""
+#     author = UserSerializer(read_only=True)
