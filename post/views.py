@@ -10,7 +10,7 @@ class PostListViewset(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.Cre
     """Manage the posts"""
     authentication_classes = (TokenAuthentication,)
     permission_classes=(IsAuthenticated,)
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by('-date_posted')
     serializer_class = PostSerializer
 
     def perform_create(self, serializer):
