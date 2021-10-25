@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from core.models import Post
 
-class PostListViewset(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin):
+class PostListViewset(viewsets.GenericViewSet, mixins.CreateModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, mixins.ListModelMixin, mixins.DestroyModelMixin):
     """Manage the posts"""
     authentication_classes = (TokenAuthentication,)
     permission_classes=(IsAuthenticated,)
