@@ -1,8 +1,7 @@
-from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from user.serializers import UserSerializer
-from core.models import Post
+from core.models import Post, Group
 
 class PostSerializer(serializers.ModelSerializer):
     """Serializer for post objects"""
@@ -10,10 +9,13 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ('id', 'title', 'content', 'date_posted', 'date_updated', 'author')
-        read_only_fields = ('id', 'date_posted', 'date_updated')
+        fields = ('id', 'title', 'content', 'date_posted', 'date_updated', 'author', 'group')
+        read_only_fields = ('id', 'date_posted', 'date_updated', 'author')
 
 
-# class PostDetailSerializer(PostSerializer):
-#     """Serializer for a post details"""
-#     author = UserSerializer(read_only=True)
+class GroupSerializer(serializers.ModelSerializer):
+    """Serializer for listing group objects"""
+    class Meta:
+        model = Group
+        fields = ('id', 'name', 'slug', 'description', 'listed', 'date_created')
+        read_only_fields = ('id', 'date_created')
