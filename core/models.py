@@ -54,6 +54,18 @@ class Post(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    group = models.ForeignKey('Group', on_delete=models.CASCADE, null=True, blank=True, related_name='posts')
 
     def __str__(self):
         return self.title
+
+class Group(models.Model):
+    """Group for posts to be classified under"""
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True)
+    description = models.TextField()
+    listed = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
