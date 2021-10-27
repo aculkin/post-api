@@ -1,4 +1,4 @@
-from post.serializers import PostSerializer, GroupListSerializer
+from post.serializers import PostSerializer, GroupSerializer
 
 from rest_framework import viewsets, mixins
 from rest_framework.authentication import TokenAuthentication
@@ -22,7 +22,7 @@ class GroupListViewset(viewsets.GenericViewSet, mixins.CreateModelMixin, mixins.
     authentication_classes = (TokenAuthentication,)
     permission_classes=(IsAuthenticated,)
     queryset = Group.objects.all()
-    serializer_class = GroupListSerializer
+    serializer_class = GroupSerializer
 
 class GroupPostListViewset(viewsets.GenericViewSet, mixins.ListModelMixin):
     """Get all the posts in a specific group"""
